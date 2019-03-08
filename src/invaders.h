@@ -37,7 +37,7 @@ class invaders : public mode
 		std::mt19937_64 generator;
 
 	protected:
-		std::vector<std::shared_ptr<object>> * offscreen;
+		std::vector<std::shared_ptr<object>> * offScreen;
 		//std::vector<object *> onScreen;	// collection of objects for the mode that are displayed onScreen;
 		//std::vector<std::shared_ptr<object>> onScreen2;	// collection of objects for the mode that are displayed onScreen;
 		int level = 1;					// current level, default 1;

@@ -30,10 +30,18 @@ struct condition
 
 struct color
 {
-	double red;
-	double green;
-	double blue;
-	double alpha;
+	int red;
+	int green;
+	int blue;
+	int alpha;
+};
+
+struct layer
+{
+	std::vector<point>    pnts;
+	std::vector<triangle> tris;
+	color fill;
+	color line;
 };
 
 #endif

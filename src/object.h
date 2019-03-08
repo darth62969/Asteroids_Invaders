@@ -5,12 +5,6 @@
 #include "mode.h"
 #include "structs.h"
 
-struct layer
-{
-	std::vector<point>    pnts;
-	std::vector<triangle> tris;
-	color clr;
-};
 
 
 class object

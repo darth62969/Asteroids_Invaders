@@ -13,7 +13,6 @@
 
 
 
-
 class render
 {
 	public:
@@ -23,7 +22,10 @@ class render
 		int insidePlayArea(point P);
 		void drawPlayArea();
 		void drawOctogon();
+		void drawLayer(layer * lyr);
 		void setFont(void * font);
+		
+
 
 		void *currentfont;				// Bit map font pointer.
 		std::vector<point> octogon;

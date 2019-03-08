@@ -99,6 +99,30 @@ void render::drawOctogon()
 	glEnd();
 }
 
+void drawLayer(layer * lyr, double x, double y)
+{
+	glutColor3d(lyr->fill.red, lyr->fill.green, lyr->fill.blue);
+
+	for(layer l : lyr->tris)
+	{
+		glBegin(GL_TRIANGLES);
+			glVertex2d((l.a.x)+(x), (l.a.y)+(y));
+			glVertex2d((l.b.x)+(x), (l.b.y)+(y));
+			glVertex2d((l.c.x)+(x), (l.c.y)+(y));
+		glEnd();
+	}
+	
+	glutColor3d(lyr->line.red, lyr->line.green, lyr->line.blue);
+	
+	for(int i = 0; i<lyr->pnts.size(); i++)
+	{
+		glBegin(GL_LINES);
+			glVertex2d((lyr->pnts[i].x)+(x), (lyr->pnts[i].y)+(y));
+			glVertex2d((lyr->pnts[(i+1)%lyrs->pnts.size()].x)+(x), (lyr->pnts[(i+1)%lyrs->pnts.size()].y)+(y));
+		glEnd();
+	}
+}
+
 void render::setFont(void * font)
 {
 	currentfont=font;

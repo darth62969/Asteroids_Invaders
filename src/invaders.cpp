@@ -38,8 +38,27 @@ invaders::step()
 	for (int i = 0; i<onScreen2->size(); i++)
 	{
 		onScreen2->at(i)->doAction(this);
-		if(std::dynamic_pointer_cast<asteroid>(onScreen2->at(i)))
-			numAsteroids++;
+		if(!std::dynamic_pointer_cast<bullet>(onScreen2->at(i)))
+			numInvaders++;
+	}
+	switch(numInvaders)
+	{
+		case 0:
+			level++;
+			std::vector<std::shared_ptr<object>> * temp = onScreen2;
+			onScreen2 = offScreen;
+			offScreen = temp;
+			offScreen->clear();
+			generateLevel();
+			
+		default:
+			switch(level)
+			{
+				case 1:
+					
+			}
+			break;
+		
 	}
 }
 

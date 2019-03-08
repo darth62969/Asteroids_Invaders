@@ -9,12 +9,8 @@
 class ship : public object 
 {
     public:
-        //constructors
-		ship();
-        ship(int tp, std::vector<point> pnts); 
-        ship(int tp);
-
-        //getters
+        
+		//getters
 		virtual std::vector<point> getBounds();
         virtual std::vector<point> getPoints();
         virtual std::vector<triangle> getTriangles();
@@ -27,32 +23,22 @@ class ship : public object
 		int getAction();
 		void setAction(int act);
 		
-
-
-
         //actions
 
         virtual void fire(mode * md);                    // fire weapon
 		virtual void resetShip();
 
-        void iterateAction();           // move / fire weapon
+        //void iterateAction();           // move / fire weapon
 
 		int addHealth(int dmg);
 		int damageHealth(int dmg);
-
-
-//        void activatePowerUp(PowerUp pwr);        // change weapon type
-//        void activatePowerUp(int pwr);
-
-
-
 
         //render functions
 		virtual void render();
         
 		/*depreciated*/
 		void renderShip();              // draw the ship
-        void tessilateShip();           // Tesslate the ship
+        //void tessilateShip();           // Tesslate the ship
         
     
     protected:
