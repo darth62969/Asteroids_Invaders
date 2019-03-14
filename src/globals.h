@@ -19,7 +19,7 @@
 #define GLOBALS
 
 #include <vector>
-#include "asteroid.h"
+//#include "asteroid.h"
 #include "ship.h"
 #include "bullet.h"
 
@@ -47,7 +47,7 @@ extern ofstream shipLogger;
 extern ofstream collisionLogger;
 extern ofstream bulletLogger;
 extern ofstream transformationLogger;*/
-extern char* ASTEROID_LOG_PATH;
+//extern char* ASTEROID_LOG_PATH;
 extern char* SHIP_LOG_PATH;
 extern char* COLLISION_LOG_PATH;
 extern char* BULLET_LOG_PATH;

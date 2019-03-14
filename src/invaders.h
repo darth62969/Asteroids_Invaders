@@ -11,9 +11,9 @@ typedef class object;
 class invaders : public mode
 {
 	public:
-		invaders();							// Default Asteroids Mode;
+		invaders();				// Default Asteroids Mode;
 		int step(); 			// Increments mode, runs checkes for level clear and moves objects if needed. 
-										// returns 1 if mode won 2 if lost;
+								// returns 1 if mode won 2 if lost;
 		void generateLevel();	// Generates objects and places them onScreen;
 		void init();			// 
 
@@ -27,7 +27,7 @@ class invaders : public mode
 		void drawScore();
 		void drawAll();
 
-		std::string getName();
+	//	std::string getName();
 
 		void keyboardFunc(char key, int x, int y);
 		void mouseFunc(int button, int state, int x, int y);
@@ -48,7 +48,7 @@ class invaders : public mode
 
 	private:
 //		int bulletsHit = 0;
-		int numAsteroids;
+// 		int numAsteroids;
 
 
 				

@@ -8,6 +8,7 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 #include <vector>
+#include <iostream>
 #include "structs.h"
 #include "windowProperties.h"
 
@@ -17,12 +18,12 @@ class render
 {
 	public:
 		void drawString(GLuint x, GLuint y, const char* string); 
-		void initOctogon();
-		int insideOctogon(point p);
-		int insidePlayArea(point P);
-		void drawPlayArea();
-		void drawOctogon();
-		void drawLayer(layer * lyr);
+		//void initOctogon();
+		//int insideOctogon(point p);
+		//int insidePlayArea(point P);
+		//void drawPlayArea();
+		//void drawOctogon();
+		void drawLayer(layer * lyr, double x, double y);
 		void setFont(void * font);
 		
 

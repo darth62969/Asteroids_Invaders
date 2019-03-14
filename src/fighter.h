@@ -9,10 +9,10 @@ class fighter : public ship
 		fighter();
 		void fire(mode * md);
 		void doAction(mode * md);
+		void render(mode * md);
 
 	private:
 		int cycle = 0;
-
 
 };
 

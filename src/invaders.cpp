@@ -4,6 +4,7 @@
 #include "render.h"
 #include "fighter.h"
 
+int gamestate =1;
 
 invaders::invaders()
 {
@@ -30,9 +31,13 @@ invaders::invaders()
 
 	std::cout << "Loaded invaders\n";
 }
-
-invaders::step()
+void invaders::init()
 {
+	return;
+}
+
+int invaders::step()
+{/*
 	stp++;
 	int numInvaders=0;
 	for (int i = 0; i<onScreen2->size(); i++)
@@ -59,7 +64,52 @@ invaders::step()
 			}
 			break;
 		
+	}*/
+	return 1;
+}
+
+void invaders::generateLevel()
+{
+	onScreen2->push_back(std::make_shared<fighter>(fighter()));
+	onScreen2->back()->setLocation(0,0);
+}
+
+void invaders::drawAll()
+{
+	drawObjects();
+}
+void invaders::drawLevel()
+{
+	return;
+}
+void invaders::drawScore()
+{
+	return;
+}
+
+void invaders::drawObjects()
+{
+	for(std::weak_ptr<object> o : *onScreen2)
+	{
+		char a[10];
+		//sprintf(a, "%d", i);
+		if(auto opt = o.lock())
+		{
+			opt->render(this);
+		}
 	}
+}
+void invaders::keyboardFunc(char key, int x, int y)
+{
+	return;
+}
+void invaders::mouseFunc(int button, int state, int x, int y)
+{
+	return;
+}
+void invaders::passiveMouseFunc(int x, int y)
+{
+	return;
 }
 
 
@@ -67,7 +117,7 @@ invaders::step()
 
 extern "C" mode * create()
 {
-	return new normal();
+	return new invaders();
 }
 extern "C" mode * destroy(mode * m)
 {

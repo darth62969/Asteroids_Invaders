@@ -34,7 +34,7 @@ class ship : public object
 		int damageHealth(int dmg);
 
         //render functions
-		virtual void render();
+		virtual void render(mode * md);
         
 		/*depreciated*/
 		void renderShip();              // draw the ship

@@ -5,3 +5,5 @@
 .vscode/ipch/3f7c0a2448fc73f3/mmap_address.bin
 .vscode/ipch/75267f5615c7f594/mmap_address.bin
 .vscode/ipch/7cc873809fd7450e/mmap_address.bin
+*.o
+bin/*

@@ -25,7 +25,8 @@ bullet::bullet(std::vector<point> pnts, int dmg, double vel)
 	layer lyr;
 	lyr.pnts = pnts;
 	tessellate(&lyr);
-	lyr.clr = color{1.0,1.0,0.0,0};
+	lyr.fill = color{100,100,0,0};
+	lyr.line = color{65,65,65,0};
 	damage = dmg;
 	location.w = vel; 
 	lyrs.push_back(lyr);
@@ -50,7 +51,8 @@ bullet::bullet()
 	lyr.pnts.push_back(point {-3, -2, 0, 1});
 	lyr.pnts.push_back(point { 1, -2, 0, 1});
 	tessellate(&lyr);
-	lyr.clr = color{1.0,1.0,0.0,0};
+	lyr.fill = color{100,100,0,0};
+	lyr.line = color{65,65,65,0};
 	damage=5;
 	location.w = 2;
 	lyrs.push_back(lyr);
@@ -79,53 +81,12 @@ void bullet::doAction(mode * md)
 	location.y+=location.w*sin(location.angle);
 }
 
-void bullet::render()
+void bullet::render(mode * md)
 {
 
-	std::vector<triangle> temp = lyrs[0].tris;
-	for (int i = 0; i < temp.size(); i++)
+	for (layer lyr : lyrs)
 	{
-		point b[3];
-		b[0]=temp[i].a;
-		b[1]=temp[i].b;
-		b[2]=temp[i].c;
-		for(int j=0; j<3; j++)
-		{ 
-			point tempp;
-
-			tempp.x= b[j].x*cos(location.angle)-b[j].y*sin(location.angle);
-			tempp.y= b[j].x*sin(location.angle)+b[j].y*cos(location.angle);
-			b[j] = tempp;
-		}
-
-		temp[i].a=b[0];
-		temp[i].b=b[1];
-		temp[i].c=b[2];
-	}
-
-	glColor3d(lyrs[0].clr.red, lyrs[0].clr.green, lyrs[0].clr.blue);
-	for(int i = 0; i<temp.size(); i++)
-	{    
-		switch (/*filled*/0)
-		{
-			case 0:
-			case 1:
-				glBegin(GL_TRIANGLES);
-					glVertex2d((temp[i].a.x)+(location.x), (temp[i].a.y)+(location.y));
-					glVertex2d((temp[i].b.x)+(location.x), (temp[i].b.y)+(location.y));
-					glVertex2d((temp[i].c.x)+(location.x), (temp[i].c.y)+(location.y));
-				glEnd();
-				break;
-			case 2:
-				glBegin (GL_LINES);
-					glVertex2d((temp[i].a.x)+(location.x), (temp[i].a.y)+(location.y));
-					glVertex2d((temp[i].b.x)+(location.x), (temp[i].b.y)+(location.y));
-					glVertex2d((temp[i].b.x)+(location.x), (temp[i].b.y)+(location.y));
-					glVertex2d((temp[i].c.x)+(location.x), (temp[i].c.y)+(location.y));
-					glVertex2d((temp[i].c.x)+(location.x), (temp[i].c.y)+(location.y));
-					glVertex2d((temp[i].a.x)+(location.x), (temp[i].a.y)+(location.y));
-				glEnd();
-		}
+		md->r2->drawLayer(&lyr, location.x, location.y);
 	}
 }
 
@@ -134,7 +95,7 @@ std::vector<point> bullet::getBounds()
  	std::vector<point> temp = lyrs[0].pnts;
 	for (int i =0; i < temp.size(); i++)
 	{
-			scalePoint(temp[i], 5);
+			//scalePoint(temp[i], 5);
 
 			point tempp;
 

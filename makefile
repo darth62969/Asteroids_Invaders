@@ -15,7 +15,7 @@ CFLAGS = -v -std=c++11
 COPTFLAGS = -O3
 LIBFLAGS = -lglut -lGLU -lGL -lm
 HEADERS = src/headers.h src/structs.h src/globals.h src/prototypes.h
-OBJ = object.o ship.o bullet.o render.o transformer.o
+OBJ = object.o ship.o bullet.o render.o transformer.o invaders.o fighter.o mode.o
 SHARED = -shared -fPIC
 LINKS = -ldl
 
@@ -39,6 +39,12 @@ render.o : src/render.cpp
 
 object.o : src/object.cpp
 	$(CC) $(CFLAGS) $(COPTFLAGS) -c src/object.cpp $(SHARED)
+
+fighter.o : src/fighter.cpp
+	$(CC) $(CFLAGS) $(COPTFLAGS) -c src/fighter.cpp $(SHARED)
+
+mode.o : src/fighter.cpp
+	$(CC) $(CFLAGS) $(COPTFLAGS) -c src/mode.cpp $(SHARED)
 
 clean :
 	rm *.o

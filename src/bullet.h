@@ -13,7 +13,7 @@ class bullet : public object
 		explicit bullet(const bullet& other, point loc);
 
 		void doAction(mode * md);
-		void render();
+		void render(mode * md);
 		bullet* fireBullet(double x, double y, double angle);
 		std::shared_ptr<bullet> fireBullet2(double x, double y, double angle);
 		

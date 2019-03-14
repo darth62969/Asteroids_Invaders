@@ -24,7 +24,7 @@ point shipRender;
 
 int type;
 
-ship::ship()
+/*ship::ship()
 {
 
 }
@@ -192,13 +192,13 @@ ship::ship(int tp)
 
 			
 	}
-}
+}*/
 std::vector<point> ship::getBounds()
 {
  	std::vector<point> temp = lyrs[0].pnts;
 	for (int i =0; i < temp.size(); i++)
 	{
-			scalePoint(temp[i], 5);
+			//scalePoint(temp[i], 5);
 
 			point tempp;
 
@@ -217,7 +217,7 @@ std::vector<point> ship::getPoints()
 	std::vector<point> temp = lyrs[0].pnts;
 	for (int i =0; i < temp.size(); i++)
 	{
-			scalePoint(temp[i], 5);
+			//scalePoint(temp[i], 5);
 
 			point tempp;
 
@@ -240,7 +240,7 @@ std::vector<triangle> ship::getTriangles()
 		point a[3] = {temp[i].a, temp[i].b, temp[i].c};
 		for (int j = 0; j < 3; j++ )
 		{
-			scalePoint(a[j], 5);
+			//scalePoint(a[j], 5);
 
 			point tempp;
 
@@ -262,7 +262,7 @@ std::vector<point> ship::getAtkPnts()
 	std::vector<point> temp = atkpnts;
 	for (int i =0; i < temp.size(); i++)
 	{
-			scalePoint(temp[i], 5);
+			//scalePoint(temp[i], 5);
 
 			point tempp;
 
@@ -302,16 +302,16 @@ void ship::fire(mode* md)
 	}
 }
 
-void ship::iterateAction()
+/*void ship::iterateAction()
 {
 	switch(actionSet)
 	{
 		case 1:
-			cycle++;
+			//cycle++;
 			switch(cycle/50)
 			{
 				case 0:
-					location.x++;
+					//location.x++;
 					break;
 				case 1:
 					location.x--;
@@ -320,7 +320,7 @@ void ship::iterateAction()
 			switch(cycle%50)
 			{
 				case 0:
-					location.y-=10;
+					//location.y-=10;
 					break;
 
 			}
@@ -341,7 +341,7 @@ void ship::iterateAction()
 			break;
 
 	}		
-}
+}*/
 
 int ship::damageHealth(int dmg)
 {
@@ -389,12 +389,12 @@ void ship::renderShip()
 			{
 				//if end game we want to play the end animation
 				case 2: 
-					scalePoint(b[j], EndGameAnimation);
+					//scalePoint(b[j], EndGameAnimation);
 					EndGameAnimation*=0.999;
 					break;
 				// all other cases leave the ship alone
 				default:
-					scalePoint(b[j], 5);
+					//scalePoint(b[j], 5);
 					break;
 			}
 
@@ -409,7 +409,7 @@ void ship::renderShip()
 		temp[i].b=b[1];
 		temp[i].c=b[2];
 	}
-	glColor3d(lyrs[0].clr.red, lyrs[0].clr.green, lyrs[0].clr.blue);
+	//glColor3d(lyrs[0].clr.red, lyrs[0].clr.green, lyrs[0].clr.blue);
 	for(int i = 0; i<temp.size(); i++)
 	{    
 		switch (/*filled*/0)
@@ -454,7 +454,7 @@ void ship::renderShip()
 		}
 	glEnd();*/
 }
-void ship::render()
+void ship::render(mode * md)
 {
 	// Create a temporary std::vector with the ship's Triangles
 	std::vector<triangle> temp = lyrs[0].tris;
@@ -472,12 +472,12 @@ void ship::render()
 			{
 				//if end game we want to play the end animation
 				case 2: 
-					scalePoint(b[j], EndGameAnimation);
+					//scalePoint(b[j], EndGameAnimation);
 					EndGameAnimation*=0.999;
 					break;
 				// all other cases leave the ship alone
 				default:
-					scalePoint(b[j], 5);
+					//scalePoint(b[j], 5);
 					break;
 			}
 
@@ -537,7 +537,7 @@ void ship::render()
 		}
 	glEnd();*/
 }
-void ship::tessilateShip()
+/*void ship::tessilateShip()
 {
 	std::vector<point> temp = lyrs[0].pnts;
 	point A = temp[0];
@@ -708,5 +708,5 @@ void ship::tessilateShip()
 	for (int i = 0; i < lyrs[0].tris.size(); i++)
 	{
 	}
-}
+}*/
 

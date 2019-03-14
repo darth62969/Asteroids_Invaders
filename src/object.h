@@ -11,7 +11,7 @@ class object
 {
 	public:
 		//Virtual Fucntions
-		virtual void render() = 0;
+		virtual void render(mode * md) = 0;
 		virtual void doAction(mode * md);
 		void tessellate(layer* lyr);
 
@@ -32,6 +32,7 @@ class object
 		
 	protected:
 		point location;
+		
 
 
 		/* 
