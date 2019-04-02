@@ -35,6 +35,11 @@ class invaders : public mode
 
 		object * player;
 		std::mt19937_64 generator;
+		//std::uniform_int_distribution *a_dist;
+		//std::uniform_int_distribution *b_dist;
+		int a;
+		int b;
+		int x;
 
 	protected:
 		std::vector<std::shared_ptr<object>> * offScreen;

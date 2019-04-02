@@ -13,6 +13,9 @@ class fighter : public ship
 
 	private:
 		int cycle = 0;
+		
+
+	friend class render;
 
 };
 

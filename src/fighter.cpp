@@ -1,6 +1,9 @@
 #include "fighter.h"
 #include "globals.h"
- int scale =5;
+ int scale =2;
+ int count;
+ int stage;
+ int stagelck = 0;
 fighter::fighter()
 {
 	layer lyr;
@@ -9,25 +12,27 @@ fighter::fighter()
 
 	lyr.fill = color{100, 100, 100};
 	lyr.line = color{ 60,  60,  60};
+
 	lyr.pnts.push_back(point{   0*scale,  18*scale, 0 ,1});
-	lyr.pnts.push_back(point{   1*scale,  18*scale, 0 ,1});
-	lyr.pnts.push_back(point{   3*scale,  16*scale, 0 ,1});
-	lyr.pnts.push_back(point{   5*scale,  12*scale, 0 ,1});
-	lyr.pnts.push_back(point{   5*scale,   2*scale, 0 ,1});
-	lyr.pnts.push_back(point{   7*scale,  -2*scale, 0 ,1});
-	lyr.pnts.push_back(point{   9*scale,  -4*scale, 0 ,1});
-	lyr.pnts.push_back(point{  11*scale,  -8*scale, 0 ,1});
-	lyr.pnts.push_back(point{  11*scale, -16*scale, 0 ,1});
-	lyr.pnts.push_back(point{   9*scale, -18*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -9*scale, -18*scale, 0 ,1});
-	lyr.pnts.push_back(point{ -11*scale, -16*scale, 0 ,1});
-	lyr.pnts.push_back(point{ -11*scale,  -8*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -9*scale,  -5*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -7*scale,  -2*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -5*scale,   2*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -5*scale,  12*scale, 0 ,1});
-	lyr.pnts.push_back(point{  -2*scale,  16*scale, 0 ,1});
 	lyr.pnts.push_back(point{  -1*scale,  18*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -3*scale,  16*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -5*scale,  12*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -5*scale,   2*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -7*scale,  -2*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -9*scale,  -5*scale, 0 ,1});
+	lyr.pnts.push_back(point{ -11*scale,  -8*scale, 0 ,1});
+	lyr.pnts.push_back(point{ -11*scale, -16*scale, 0 ,1});
+	lyr.pnts.push_back(point{  -9*scale, -18*scale, 0 ,1});
+	lyr.pnts.push_back(point{   9*scale, -18*scale, 0 ,1});
+	lyr.pnts.push_back(point{  11*scale, -16*scale, 0 ,1});
+	lyr.pnts.push_back(point{  11*scale,  -8*scale, 0 ,1});
+	lyr.pnts.push_back(point{   9*scale,  -4*scale, 0 ,1});
+	lyr.pnts.push_back(point{   7*scale,  -2*scale, 0 ,1});
+	lyr.pnts.push_back(point{   5*scale,   2*scale, 0 ,1});
+	lyr.pnts.push_back(point{   5*scale,  12*scale, 0 ,1});
+	lyr.pnts.push_back(point{   3*scale,  16*scale, 0 ,1});
+	lyr.pnts.push_back(point{   1*scale,  18*scale, 0 ,1});
+	
 	
 	tessellate(&lyr);
 	
@@ -35,13 +40,14 @@ fighter::fighter()
 
 	layer lyr2;
 	
-	lyr2.fill = color{100, 100, 100};
+	lyr2.fill = color{50, 50, 50};
 	lyr2.line = color{ 60, 100,  60};
 	
-	lyr2.pnts.push_back(point{ 9,  -6, 0 ,1});
-	lyr2.pnts.push_back(point{ 9, -16, 0 ,1});
-	lyr2.pnts.push_back(point{ 5, -16, 0 ,1});
-	lyr2.pnts.push_back(point{ 5,  -6, 0 ,1});
+	lyr2.pnts.push_back(point{ 9*scale,  -6*scale, 0 ,1});
+	lyr2.pnts.push_back(point{ 5*scale,  -6*scale, 0 ,1});
+	lyr2.pnts.push_back(point{ 5*scale, -16*scale, 0 ,1});
+	lyr2.pnts.push_back(point{ 9*scale, -16*scale, 0 ,1});
+	
 	
 	tessellate(&lyr2);
 	
@@ -49,14 +55,14 @@ fighter::fighter()
 
 	layer lyr3;
 	
-	lyr3.fill = color{100, 100, 100};
+	lyr3.fill = color{50, 50, 50};
 	lyr3.line = color{ 60, 100,  60};
 	
-	lyr3.pnts.push_back(point{ -9,  -6, 0 ,1});
-	lyr3.pnts.push_back(point{ -9, -16, 0 ,1});
-	lyr3.pnts.push_back(point{ -5, -16, 0 ,1});
-	lyr3.pnts.push_back(point{ -5,  -6, 0 ,1});
-	
+	lyr3.pnts.push_back(point{ -9*scale,  -6*scale, 0 ,1});
+	lyr3.pnts.push_back(point{ -5*scale,  -6*scale, 0 ,1});
+	lyr3.pnts.push_back(point{ -5*scale, -16*scale, 0 ,1});
+	lyr3.pnts.push_back(point{ -9*scale, -16*scale, 0 ,1});
+
 	tessellate(&lyr3);
 	
 	lyrs.push_back(lyr3);
@@ -77,60 +83,62 @@ fighter::fighter()
 	//actionSet = 2;
 	health = 20;
 	cycle = 25;
+
+	stage=1;
 }
 
 void fighter::fire(mode * md)
 {
+	//std::cout << "getting attack point" << std::endl;
 	std::vector<point> temp=getAtkPnts();
 	for (int i = 0; i < temp.size(); i++)
-	{	
-		temp[i].x+=sin(location.angle);
-		temp[i].y+=cos(location.angle);
-		bullet * shot = blt.fireBullet(temp[i].x, temp[i].y, location.angle);
+	{
+		std::shared_ptr<bullet> shot = blt.fireBullet2(temp[i].x, temp[i].y, location.angle);
 		md->addToOnScreen(shot);
 	}
 }
 
 void fighter::doAction(mode * md)
-{/*
-	cycle++;
-
-	point pnt = player.getAtkPnts()[0];
-	double bearing =(atan2f(pnt.y-this->getAtkPnts()[0].y, pnt.x-this->getAtkPnts()[0].x));
-	this->setRotation(bearing);
-
-	switch(cycle/50)
+{
+	std::cout<< stage << " : " << count << std::endl;
+	switch (stage)
 	{
-		case 0:
-			location.x++;
-			break;
 		case 1:
-			location.x--;
+			count++;
+			switch (count)
+			{
+				case 1:
+					fire(md);
+					break;
+				case 10:
+					count=0;
+			}
+			if(count>10)
+			 	count=0;
 			break;
+		case 2:
+			count++;
+			switch(count)
+			{
+				case 1:
+					fire(md);
+					break;
+				case 5:
+					fire(md);
+					count=0;
+					break;
+			}
 	}
-	switch(cycle%50)
+	if (health==10)
 	{
-		case 0:
-			location.y-=10;
-			break;
-
+		stage++;
 	}
-	if (cycle >= 100)
-	{
-		cycle = 0;
-	}
-	switch(rand()%70)
-	{
-		case 0: 
-		fire(md);
-		break;
-	}*/
 }
 
 void fighter::render(mode * md)
 {
 	for (layer lyr : lyrs)
 	{
-		md->r2->drawLayer(&lyr, location.x, location.y);
+		md->r2->drawLayer(&lyr, location);
 	}
 }

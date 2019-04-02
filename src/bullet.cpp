@@ -86,7 +86,7 @@ void bullet::render(mode * md)
 
 	for (layer lyr : lyrs)
 	{
-		md->r2->drawLayer(&lyr, location.x, location.y);
+		md->r2->drawLayer(&lyr, location);
 	}
 }
 

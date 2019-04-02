@@ -1,10 +1,20 @@
 #include <algorithm>
+#include <time.h>
 #include "invaders.h"
 #include "bullet.h"
 #include "render.h"
 #include "fighter.h"
 
 int gamestate =1;
+
+int time1;
+int time2;
+
+/*bit mask StpBmp
+position 	| 	1
+settting 	|	left/right
+*/
+int StpBmp = 0;
 
 invaders::invaders()
 {
@@ -30,6 +40,7 @@ invaders::invaders()
 	generator.seed(s2);
 
 	std::cout << "Loaded invaders\n";
+	time1 = glutGet(GLUT_ELAPSED_TIME);
 }
 void invaders::init()
 {
@@ -37,7 +48,14 @@ void invaders::init()
 }
 
 int invaders::step()
-{/*
+{
+	time2 = glutGet(GLUT_ELAPSED_TIME);
+	//std::cout << time1 << " : "  << time2 << std::endl;
+	if (time1>=(time2-10))
+	{
+		//std::cout << "not enough time passed\n" << time1+10 << " > " << time2 << std::endl;
+		return 1;
+	}
 	stp++;
 	int numInvaders=0;
 	for (int i = 0; i<onScreen2->size(); i++)
@@ -49,29 +67,94 @@ int invaders::step()
 	switch(numInvaders)
 	{
 		case 0:
+		{
 			level++;
 			std::vector<std::shared_ptr<object>> * temp = onScreen2;
 			onScreen2 = offScreen;
 			offScreen = temp;
 			offScreen->clear();
 			generateLevel();
-			
+			break;
+		}	
 		default:
-			switch(level)
+		{
+			for (std::shared_ptr<object> o : *onScreen2)
 			{
-				case 1:
-					
+				point p1 = o->getLocation();
+				switch(level)
+				{
+					case 1:
+						switch(stp)
+						{
+							case 100:
+								o->doAction(this);
+								if (std::dynamic_pointer_cast<fighter>(o))
+								{
+									switch(StpBmp)
+									{	
+										case 1:
+											StpBmp=0;
+											break;
+										case 0:
+											StpBmp=1;
+											break;
+									}
+									p1.y-=5;
+									o->setLocation(p1);
+								}
+								stp=0;
+								break;
+							default:
+								o->doAction(this);
+								if (std::dynamic_pointer_cast<fighter> (o))
+								{
+									switch(StpBmp)
+									{	
+										case 1:
+											p1.x-=1;
+											break;
+										case 0:
+											p1.x+=1;
+											break;
+									}
+									o->setLocation(p1);
+								}
+								break;
+
+						}
+					break;
+				}
+			
 			}
 			break;
-		
-	}*/
+		}
+	}
+	time1=time2;
 	return 1;
+	
 }
 
 void invaders::generateLevel()
 {
 	onScreen2->push_back(std::make_shared<fighter>(fighter()));
 	onScreen2->back()->setLocation(0,0);
+	//delete(a_dist);
+	//delete(b_dist);
+	switch (level)
+	{
+		case 1:
+			//a_dist = new std::uniform_int_distribution(1,10);
+			//b_dist = new std::uniform_int_distribution(1,10);
+			for (int i = 0; i<10; i++)
+			{
+				onScreen2->push_back(std::make_shared<fighter>(fighter()));
+				onScreen2->back()->setLocation(point{-275+(i*50), 200, 0, 1, M_PI});
+			}
+			break;
+	
+		default:
+			break;
+	}
 }
 
 void invaders::drawAll()
